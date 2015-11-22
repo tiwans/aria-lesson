@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dial Pad</title>
 
     <!-- General meta details -->
@@ -13,7 +12,7 @@
     <!-- CSS -->
     <link href="css/main.css" type="text/css" rel="stylesheet" />
 
-<link rel="icon" href="img/phone-icon.png"/>
+	<link rel="icon" href="img/phone-icon.png"/>
 </head>
 <body>
 
@@ -21,28 +20,37 @@
     <div class="dialpad compact">
         <div class="number"></div>
         <div class="dials">
-            <ol>
-                <li class="digits"><p><strong>1</strong></p></li>
-                <li class="digits"><p><strong>2</strong><sup>abc</sup></p></li>
-                <li class="digits"><p><strong>3</strong><sup>def</sup></p></li>
-                <li class="digits"><p><strong>4</strong><sup>ghi</sup></p></li>
-                <li class="digits"><p><strong>5</strong><sup>jkl</sup></p></li>
-                <li class="digits"><p><strong>6</strong><sup>mno</sup></p></li>
-                <li class="digits"><p><strong>7</strong><sup>pqrs</sup></p></li>
-                <li class="digits"><p><strong>8</strong><sup>tuv</sup></p></li>
-                <li class="digits"><p><strong>9</strong><sup>wxyz</sup></p></li>
-                <li class="digits"><p><strong>*</strong></p></li>
-                <li class="digits"><p><strong>0</strong><sup>+</sup></p></li>
-                <li class="digits"><p><strong>#</strong></p></li>
-                <li class="digits"><p><strong><i class="fa fa-refresh"></i></strong><sup>Clear</sup></p></li>
-                <li class="digits"><p><strong><i class="fa fa-times"></i></strong><sup>Delete</sup></p></li>
-                <li class="digits pad-action"><p><strong><i class="fa fa-phone"></i></strong> <sup>Call</sup></p></li>
-            </ol>
+	        <div class="row">
+	            <ol>
+	            	<div class="col-md-4">
+		                <li class="digits"><p><strong>1</strong></p></li>
+		                <li class="digits"><p><strong>4</strong><sup>ghi</sup></p></li>
+		                <li class="digits"><p><strong>7</strong><sup>pqrs</sup></p></li>
+		                <li class="digits"><p><strong>*</strong></p></li>
+		                <li class="digits"><p><strong><i class="fa fa-refresh"></i></strong><sup>Clear</sup></p></li>
+		            </div>    
+	                <div class="col-md-4">
+		                <li class="digits"><p><strong>2</strong><sup>abc</sup></p></li>
+		                <li class="digits"><p><strong>5</strong><sup>jkl</sup></p></li>
+		                <li class="digits"><p><strong>8</strong><sup>tuv</sup></p></li>
+		                <li class="digits"><p><strong>0</strong><sup>+</sup></p></li>
+		                <li class="digits"><p><strong><i class="fa fa-times"></i></strong><sup>Delete</sup></p></li>
+		            </div>    
+	                <div class="col-md-4">
+		                <li class="digits"><p><strong>3</strong><sup>def</sup></p></li>
+		                <li class="digits"><p><strong>6</strong><sup>mno</sup></p></li>
+		                <li class="digits"><p><strong>9</strong><sup>wxyz</sup></p></li>
+		                <li class="digits"><p><strong>#</strong></p></li>
+		                <li class="digits pad-action"><p><strong><i class="fa fa-phone"></i></strong> <sup>Call</sup></p></li>
+		            </div>    
+	            </ol>
+	        </div>    
         </div>
     </div>
 </div>
+<!-- jQuery library -->
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
