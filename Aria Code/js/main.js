@@ -47,52 +47,52 @@ $j(function(){
 
         switch(e.which){
 
-            case 96:
+            case 48:
 
                 number.append("0");
                 break;
 
-            case 97:
+            case 49:
 
                 number.append("1");
                 break;
 
-            case 98:
+            case 50:
 
                 number.append("2");
                 break;
 
-            case 99:
+            case 51:
 
                 number.append("3");
                 break;
 
-            case 100:
+            case 52:
 
                 number.append("4");
                 break;
 
-            case 101:
+            case 53:
 
                 number.append("5");
                 break;
 
-            case 102:
+            case 54:
 
                 number.append("6");
                 break;
 
-            case 103:
+            case 55:
 
                 number.append("7");
                 break;
 
-            case 104:
+            case 56:
 
                 number.append("8");
                 break;
 
-            case 105:
+            case 57:
 
                 number.append("9");
                 break;
@@ -104,19 +104,9 @@ $j(function(){
                 number.empty().append(total);
                 break;
 
-            case 27:
+            case 46:
 
                 number.empty();
-                break;
-
-            case 106:
-
-                number.append("*");
-                break;
-
-            case 35:
-
-                number.append("#");
                 break;
 
             case 13:
