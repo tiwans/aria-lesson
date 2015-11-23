@@ -1,122 +1,314 @@
-/* ==========================================================================
-   main.js
-   ========================================================================== */
-var $j = jQuery.noConflict();
+'use strict';
 
-$j(function(){
+$(document).ready(function() {
 
-    var dials = $j(".dials ol li");
-    var index;
-    var number = $j(".number");
-    var total;
+  var group1 = new radioGroup('rg1');
+  var group2 = new radioGroup('rg2');
 
-    dials.click(function(){
+}); // end ready
 
-        index = dials.index(this);
+function keyCodes () {
+  // Define values for keycodes
+  this.enter      = 13;
+  this.space      = 32;
 
-        if(index == 9){
+  this.left       = 37;
+  this.up         = 38;
+  this.right      = 39;
+  this.down       = 40;
+} 
 
-            number.append("*");
+//
+// Function radioGroup() is a class to define an ARIA-enabled radiogroup widget.
+//
+// This widget attaches to an unordered list and makes each list entry a group
+// of radio buttons.
+//
+// @param (id object) id is the html id of the <ul> to attach to
+//
+// @return N/A
+//
+function radioGroup(id) {
 
-        }else if(index == 10){
+  var thisObj = this;
 
-            number.append("0");
+  ///////// define widget properties ///////////////
 
-        }else if(index == 11){
+  this.$id = $('#' + id);
 
-            number.append("#");
+  // find all list items with a role of radio
+  this.$buttons = this.$id.find('li').filter('[role=radio]');
 
-        }else if(index == 12){
+  // Store the currently checked item
+  this.$checked = this.$buttons.filter('[aria-checked=true]');
 
-            number.empty();
+  this.checkButton = true; // set to false during ctrl+arrow operations;
 
-        }else if(index == 13){
+  this.$active = null; // the selected button (may not be checked)
+  
+  this.keys = new keyCodes();
 
-            total = number.text();
-            total = total.slice(0,-1);
-            number.empty().append(total);
+  ///////////// Bind Event handlers ////////////////
 
-        }else if(index == 14){
+  this.$buttons.click(function(e) {
+    return thisObj.handleClick(e, $(this));
+  });
 
-            //add any call action here
+  this.$buttons.keydown(function(e) {
+    return thisObj.handleKeyDown(e, $(this));
+  });
 
-        }else{ number.append(index+1); }
-    });
+  this.$buttons.keypress(function(e) {
+    return thisObj.handleKeyPress(e, $(this));
+  });
 
-    $j(document).keydown(function(e){
+  this.$buttons.focus(function(e) {
+    return thisObj.handleFocus(e, $(this));
+  });
 
-        switch(e.which){
+  this.$buttons.blur(function(e) {
+    return thisObj.handleBlur(e, $(this));
+  });
+}
 
-            case 48:
+// 
+// Function selectButton() is a member function to select and possibly check a button in the
+// radioGroup.
+//
+// @param ($id object) $id is the jQuery object of the button to select
+//
+// @return N/A
+//
+radioGroup.prototype.selectButton = function($id) {
 
-                number.append("0");
-                break;
+  if (this.checkButton == true) {
+    // checking the button
 
-            case 49:
+      // set the previous button's aria-checked attribute to false
+      this.$checked.attr('aria-checked', 'false');
 
-                number.append("1");
-                break;
+      // set the new button's aria-checked attribute to true
+      $id.attr('aria-checked', 'true');
 
-            case 50:
+    if (this.$checked.length == 0) { // no previously checked group buttons
+      // the first and last items in the group will have
+      // tabindex=0. Remove them both from the tab order.
+      this.$buttons.first().attr('tabindex', '-1');
 
-                number.append("2");
-                break;
+      this.$buttons.last().attr('tabindex', '-1');
+    }
+    else {
+      // remove the previously checked item from
+      // the tab order
+      this.$checked.attr('tabindex', '-1');
+    }
 
-            case 51:
+    // Place this button in the tab order
+    $id.attr('tabindex', '0');
 
-                number.append("3");
-                break;
+    // update the stored $checked object
+    this.$checked = $id;
+  }
 
-            case 52:
+  // reset the checkButton flag - in case it was false
+  this.checkButton = true;
 
-                number.append("4");
-                break;
+  // update the stored $active object
+  this.$active = $id;
 
-            case 53:
+  // give this button the selected class
+  $id.addClass('selected');
 
-                number.append("5");
-                break;
+} // end selectButton()
 
-            case 54:
+//
+// Function handleKeyDown() is a member function to process keydown events for the radioGroup.
+//
+// @param (e object) e is the event object
+//
+// @param ($id object) $is is the jquery object of the triggering element
+//
+// @return (boolean) Returns false if consuming event; true if propagating
+//
+radioGroup.prototype.handleClick = function(e, $id) {
 
-                number.append("6");
-                break;
+  if (e.altKey || e.ctrlKey || e.shiftKey) {
+    // do nothing
+    return true;
+  }
 
-            case 55:
+  // simply consume the event - browser calls focus
 
-                number.append("7");
-                break;
+  e.stopPropagation();
+  return false;
 
-            case 56:
+} // end handleClick()
 
-                number.append("8");
-                break;
+//
+// Function handleKeyDown() is a member function to process keydown events for the radioGroup.
+//
+// @param (e object) e is the event object
+//
+// @param ($id object) $is is the jquery object of the triggering element
+//
+// @return (boolean) Returns false if consuming event; true if propagating
+//
+radioGroup.prototype.handleKeyDown = function(e, $id) {
 
-            case 57:
+  if (e.altKey) {
+    // do nothing
+    return true;
+  }
 
-                number.append("9");
-                break;
+  switch (e.keyCode) {
+    case this.keys.space:
+    case this.keys.enter: {
+      if (e.ctrlkey || e.shiftKey) {
+        // do nothing
+        return true;
+      }
 
-            case 8:
+      // select and check the button
+      this.selectButton($id);
 
-                total = number.text();
-                total = total.slice(0,-1);
-                number.empty().append(total);
-                break;
+      e.stopPropagation();
+      return false;
+    }
+    case this.keys.left:
+    case this.keys.up: {
 
-            case 46:
+      var $prev = $id.prev(); // the previous button
 
-                number.empty();
-                break;
+      if (e.shiftKey) {
+        // do nothing
+        return true;
+      }
 
-            case 13:
+      // if this was the first item
+      // select the last one in the group.
+      if ($id.index() == 0) {
+        $prev = this.$buttons.last();
+      }
 
-                $('.pad-action').click();
-                break;
+      if (e.ctrlKey) {
+        // set checkButton to false so
+        // focus does not check button
+        this.checkButton = false;
+      }
 
-            default: return;
-        }
+      // give the previous button focus
+      $prev[0].focus();
 
-        e.preventDefault();
-    });
-});
+      e.stopPropagation();
+      return false;
+    }
+    case this.keys.right:
+    case this.keys.down: {
+
+      var $next = $id.next(); // the next button
+
+      if (e.shiftKey) {
+        // do nothing
+        return true;
+      }
+
+      // if this was the last item,
+      // select the first one in the group.
+      if ($id.index() == this.$buttons.length - 1) {
+        $next = this.$buttons.first();
+      }
+
+      if (e.ctrlKey) {
+        // set checkButton to false so
+        // focus does not check button
+        this.checkButton = false;
+      }
+
+      // give the next button focus
+      $next[0].focus();
+
+      e.stopPropagation();
+      return false;
+    }
+  } // end switch
+
+  return true;
+
+} // end handleKeyDown()
+
+//
+// Function handleKeyPress() is a member function to process keydown events for the radioGroup.
+// This is needed to prevent browsers that process window events on keypress (such as Opera) from
+// performing unwanted scrolling of the window, etc.
+//
+// @param (e object) e is the event object
+//
+// @param ($id object) $is is the jquery object of the triggering element
+//
+// @return (boolean) Returns false if consuming event; true if propagating
+//
+radioGroup.prototype.handleKeyPress = function(e, $id) {
+
+  if (e.altKey) {
+    // do nothing
+    return true;
+  }
+
+  switch (e.keyCode) {
+    case this.keys.space:
+    case this.keys.enter: {
+      if (e.ctrlKey || e.shiftKey) {
+        // do nothing
+        return true;
+      }
+    }
+    case this.keys.left:
+    case this.keys.up:
+    case this.keys.right:
+    case this.keys.down: {
+      if (e.shiftKey) {
+        // do nothing
+        return true;
+      }
+      e.stopPropagation();
+      return false;
+    }
+  } // end switch
+
+  return true;
+
+} // end handleKeyPress()
+
+//
+// Function handleFocus() is a member function to process focus events for the radioGroup.
+//
+// @param (e object) e is the event object
+//
+// @param ($id object) $is is the jquery object of the triggering element
+//
+// @return (boolean) Returns false if consuming event; true if propagating
+//
+radioGroup.prototype.handleFocus = function(e, $id) {
+
+  // Do button selection processing
+  this.selectButton($id);
+
+  return true;
+} // end handleFocus()
+
+//
+// Function handleBlur() is a member function to process blur events for the radioGroup.
+//
+// @param (e object) e is the event object
+//
+// @param ($id object) $is is the jquery object of the triggering element
+//
+// @return (boolean) Returns false if consuming event; true if propagating
+//
+radioGroup.prototype.handleBlur = function(e, $id) {
+
+  // remove the focus styling from this buttons
+  $id.removeClass('selected');
+
+  return true;
+} // end handleBlur()

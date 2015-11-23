@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dial Pad</title>
+    <title>User Survey</title>
 
     <!-- General meta details -->
     <meta name="author" content="Sukhman Tiwana" />
@@ -12,29 +12,25 @@
     <!-- CSS -->
     <link href="css/main.css" type="text/css" rel="stylesheet" />
 
-	<link rel="icon" href="img/phone-icon.png"/>
+	<link rel="icon" href="img/survey-icon.png"/>
 </head>
 <body>
 
-<div class="container">
-	<form action="">
-		<p>What is your sex?</p>
-			<input type="radio" name="sex" value="male">Male
-			<br>
-				<input type="radio" name="sex" value="female">Female
-			</br>
-		<p>What age group are you?</p>
-			<input type="radio" name="age" value="child">Child
-			<br>
-				<input type="radio" name="age" value="teenager">Teenager
-			</br>	
-				<input type="radio" name="age" value="young adult">Young Adult
-			<br>	
-				<input type="radio" name="age" value="adult">Adult
-			</br>	
-				<input type="radio" name="age" value="senior">Senior
-			</br					
-	</form>
+<div role="application">
+	<h3 id="rg1_label" tabindex="0" role="tab"> What is your sex? </h3>
+		<ul class="radiogroup" id="rg1" role="radiogroup" aria-labeledby="rg1_label">
+			<li id="r1" tabindex="0" role="radio" aria-checked="false"> Male </li>
+			<li id="r2" tabindex="0" role="radio" aria-checked="false"> Female </li>
+		</ul>
+		
+	<h3 id="rg2_label" tabindex="0" role="tab"> What is your age group? </h3>
+		<ul class="radiogroup" id="rg2" role="radiogroup" aria-labeledby="rg2_label">
+			<li id="r3" tabindex="0" role="radio" aria-checked="false"> Child </li>
+			<li id="r4" tabindex="0" role="radio" aria-checked="false"> Teenager </li>
+			<li id="r5" tabindex="0" role="radio" aria-checked="false"> Young Adult </li>
+			<li id="r6" tabindex="0" role="radio" aria-checked="false"> Adult </li>
+			<li id="r7" tabindex="0" role="radio" aria-checked="false"> Senior </li>
+		</ul>
 </div>
 <!-- jQuery library -->
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
