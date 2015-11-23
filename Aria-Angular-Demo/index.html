@@ -35,7 +35,7 @@
 
 <body role="document" class="container" ng-app="AriaApp" ng-controller="AriaCtrl as main">
     <form name="signForm" id="signUpForm" novalidate>
-    	<h1>About ARIA</h1>
+    	<section aria-labelledby="About ARIA"><h1>About ARIA</h1>
       	<p>ARIA (Assistive Rich Internet Applications), is a spec from the W3C and created to improve accessibility of applications by providing extra information to screen readers via HTML attributes. Out of the box, screen readers work with regular HTML, but adding ARIA can provide screen reader users with more context and greater interactivity with content. It was developed through the HTML Accessibility Taskforce, and is published by the HTML Working Group with approval by the Protocols and Formats Working Group. ARIA's markups are roles, properties, and states. ARIA roles define what an element is or does. ARIA properties define... well, properties or meanings of elements. ARIA states are properties that define the current condition of an element</p>
     	<h2>What does ARIA do?</h2>
 		<ul>
@@ -49,6 +49,8 @@
 		<p>WAI-ARIA is not intended to influence browser behavior. Unlike a real button element, for example, a div which you pour the role of “button” onto does not give you keyboard focusability, an automatic click handler when Space or Enter are being pressed on it, and other properties that are indiginous to a button. The browser itself does not know that a div with role of “button” is a button, only its accessibility API portion does.</p>
 
 		<p>As a consequence, this means that you absolutely have to implement keyboard navigation, focusability and other behavioural patterns known from desktop applications yourself. A good example can be read about in my Advanced ARIA tip about tabs, where I clearly define the need to add expected keyboard behavior.</p>
+
+    <br><br>
       <!-- First Name -->
       <!--The firstName field has no validations. It may remain blank (e.g., people with only one name, like Madonna or Prince)-->
       <div class="name">
