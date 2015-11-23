@@ -9,6 +9,11 @@
     <meta name="author" content="Sukhman Tiwana" />
     <meta name="author" content="Eric Berner" />
 
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/main.css"/>
+    
     <!-- CSS -->
     <link href="css/main.css" type="text/css" rel="stylesheet" />
 
@@ -17,20 +22,38 @@
 <body>
 
 <div role="application">
-	<h3 id="rg1_label" tabindex="0" role="tab"> What is your sex? </h3>
-		<ul class="radiogroup" id="rg1" role="radiogroup" aria-labeledby="rg1_label">
-			<li id="r1" tabindex="0" role="radio" aria-checked="false"> Male </li>
-			<li id="r2" tabindex="0" role="radio" aria-checked="false"> Female </li>
-		</ul>
-		
-	<h3 id="rg2_label" tabindex="0" role="tab"> What is your age group? </h3>
+	<h3 tabindex="0" role="tab">What is your sex?</h3>
+		<div class="radio">
+		  <label><input type="radio" name="male">Male</label>
+		</div>
+		<div class="radio">
+		  <label><input type="radio" name="female">Female</label>
+		</div>
+	
+	<h3 tabindex="0" role="tab">What is your age group?</h3>
+		<div class="radio">
+		  <label><input type="radio" name="child">Child</label>
+		</div>
+		<div class="radio">
+		  <label><input type="radio" name="teenager">Teenager</label>
+		</div>
+		<div class="radio">
+		  <label><input type="radio" name="young-adult">Young Adult</label>
+		</div>	
+		<div class="radio">
+		  <label><input type="radio" name="adult">Adult</label>
+		</div>
+		<div class="radio">
+		  <label><input type="radio" name="senior">Senior</label>
+		</div>
+	<!-- <h3 id="rg2_label" tabindex="0" role="tab"> What is your age group? </h3>
 		<ul class="radiogroup" id="rg2" role="radiogroup" aria-labeledby="rg2_label">
 			<li id="r3" tabindex="0" role="radio" aria-checked="false"> Child </li>
 			<li id="r4" tabindex="0" role="radio" aria-checked="false"> Teenager </li>
 			<li id="r5" tabindex="0" role="radio" aria-checked="false"> Young Adult </li>
 			<li id="r6" tabindex="0" role="radio" aria-checked="false"> Adult </li>
 			<li id="r7" tabindex="0" role="radio" aria-checked="false"> Senior </li>
-		</ul>
+		</ul> -->
 </div>
 <!-- jQuery library -->
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
