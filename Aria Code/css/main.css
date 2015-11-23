@@ -5,43 +5,7 @@ body {
   font-size: 16px;
   font-weight:300;
   background-color:#E9EAEE; 
-}
-ul.radiogroup {
-    margin: 0;
-    padding: 0;    
+  padding: 20px;
 }
 
-ul.radiogroup  li   {
-    margin: 0;
-    margin-left: 1em;
-    padding: 4px;
-  padding-left: 20px;
-    list-style: none;
-    width: 6em;    
-}
-    
-ul.radiogroup li:hover {
-  padding: 2px 18px;
-  background-position: 2px 4px;
-    border: gray 2px solid;
-}
 
-ul.radiogroup li.selected {
-  padding: 2px 18px;
-  background-position: 2px 4px;
-    border: black 2px solid;
-   }
-
-.offscreen {
-  position: absolute;
-    left: -200em;
-    top: -20em;
-}
-
-li[aria-checked='true'] {
-      background: url('http://www.oaa-accessibility.org/media/examples/images/radio-checked.gif') no-repeat 4px 6px;
-}
-
-li[aria-checked='false'] {
-      background: url('http://www.oaa-accessibility.org/media/examples/images/radio-unchecked.gif') no-repeat 4px 6px;
-}
