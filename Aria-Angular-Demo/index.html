@@ -35,20 +35,24 @@
 
 <body role="document" class="container" ng-app="AriaApp" ng-controller="AriaCtrl as main">
     <form name="signForm" id="signUpForm" novalidate>
-    	<section aria-labelledby="About ARIA"><h1>About ARIA</h1>
-      	<p>ARIA (Assistive Rich Internet Applications), is a spec from the W3C and created to improve accessibility of applications by providing extra information to screen readers via HTML attributes. Out of the box, screen readers work with regular HTML, but adding ARIA can provide screen reader users with more context and greater interactivity with content. It was developed through the HTML Accessibility Taskforce, and is published by the HTML Working Group with approval by the Protocols and Formats Working Group. ARIA's markups are roles, properties, and states. ARIA roles define what an element is or does. ARIA properties define... well, properties or meanings of elements. ARIA states are properties that define the current condition of an element</p>
-    	<h2>What does ARIA do?</h2>
-		<ul>
-	      	<li>In general, accessibility issues with rich internet applications can be characterized as:
-				Inability to provide the semantic structure of page areas and functionality (e.g., navigation, main content, search, etc.) </li>
-			<li>Inaccessibility of content that is dynamic and may change within the page (e.g., AJAX content updates)</li>
-			<li>Inability to change keyboard focus to page elements (e.g., setting focus to an error message within the page)</li>
-			<li>Difficulty with keyboard and screen reader accessibility with complex widgets and navigation elements (e.g., sliders, menu trees, etc.)</li>
-		</ul>	
-		<h2>What does ARIA not do?</h2>
-		<p>WAI-ARIA is not intended to influence browser behavior. Unlike a real button element, for example, a div which you pour the role of “button” onto does not give you keyboard focusability, an automatic click handler when Space or Enter are being pressed on it, and other properties that are indiginous to a button. The browser itself does not know that a div with role of “button” is a button, only its accessibility API portion does.</p>
-
-		<p>As a consequence, this means that you absolutely have to implement keyboard navigation, focusability and other behavioural patterns known from desktop applications yourself. A good example can be read about in my Advanced ARIA tip about tabs, where I clearly define the need to add expected keyboard behavior.</p>
+    	<h1 tabindex="0">About ARIA</h1>
+      <p>ARIA (Assistive Rich Internet Applications), is a spec from the W3C created to improve accessibility of applications by providing more context and more interactivity to HTML attributes. It was developed through the HTML Accessibility Taskforce, and is published by the HTML Working Group with approval by the Protocols and Formats Working Group.</p> 
+      <h2>ARIA's Markups:</h2>
+        <ul>
+           <li>Roles: Defines the element</li>
+           <li>Properties: Adds properties to the elements</li>
+           <li>States: Defines the current states of the element</li>
+        </ul>
+      <h2 tabindex="0" role="tab">What Does ARIA Solve?</h2>
+    		<ul>
+          <li>In general, accessibility issues with rich internet applications can be characterized as:Inability to provide the semantic structure of page areas and functionality (e.g., navigation, main content, search, etc.) </li>
+    			<li>Inaccessibility of content that is dynamic and may change within the page (e.g., AJAX content updates)</li>
+    			<li>Inability to change keyboard focus to page elements (e.g., setting focus to an error message within the page)</li>
+    			<li>Difficulty with keyboard and screen reader accessibility with complex widgets and navigation elements (e.g., sliders, menu trees, etc.)</li>
+    		</ul>	
+		<h2 tabindex="0">What Does ARIA NOT Solve?</h2>
+		<p tabindex="0">WAI-ARIA is not intended to influence browser behavior. Unlike a real button element. The browser itself does not know that a div with role of “button” is a button, only its accessibility API portion does.</p> 
+    <p>NOTE: As a consequence, this means that you absolutely have to implement keyboard navigation, focusability and other behavioural patterns known from desktop applications yourself.</p>
 
     <br><br>
       <!-- First Name -->
@@ -78,9 +82,14 @@
           </div>
         </div>  
         <button type="submit" class="btn btn-success" ng-click="submitForm(signForm.$valid)" ng-disabled="signForm.$invalid" id="submitButton" value="Submit">Sign Me Up!</button>
+
   </div>  
 
-<footer role="contentinfo">
+<footer role="contentinfo" >
+      <br>
+      <h3 tabindex="0" role="tab">Helpful ARIA Links</h3>  
+      <a href = "http://www.w3.org/TR/2014/REC-wai-aria-20140320/"> W3 Aria Resources</a>
+      <br>
       <a href = "http://a11yproject.com/posts/getting-started-aria/"> More about Aria</a>
 </footer>
 
