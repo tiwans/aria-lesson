@@ -17,7 +17,7 @@
 
   <!-- include libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-aria.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
 
   <!-- load ngmessages -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
@@ -34,66 +34,68 @@
 </head>
 
 <body class="container" ng-app="AriaApp" ng-controller="AriaCtrl as main">
-    <form name="signForm" id="signUpForm" novalidate>
-    	<h1>About ARIA</h1>
-      <p>ARIA (Assistive Rich Internet Applications), is a spec from the W3C created to improve accessibility of applications by providing more context and more interactivity to HTML attributes. It was developed through the HTML Accessibility Taskforce, and is published by the HTML Working Group with approval by the Protocols and Formats Working Group.</p> 
-      <h2>ARIA's Markups:</h2>
-        <ul>
-           <li>Roles: Defines the element</li>
-           <li>Properties: Adds properties to the elements</li>
-           <li>States: Defines the current states of the element</li>
-        </ul>
-      <h2>What Does ARIA Solve?</h2>
-    		<ul>
-          <li>In general, accessibility issues with rich internet applications can be characterized as:Inability to provide the semantic structure of page areas and functionality (e.g., navigation, main content, search, etc.) </li>
-    			<li>Inaccessibility of content that is dynamic and may change within the page (e.g., AJAX content updates)</li>
-    			<li>Inability to change keyboard focus to page elements (e.g., setting focus to an error message within the page)</li>
-    			<li>Difficulty with keyboard and screen reader accessibility with complex widgets and navigation elements (e.g., sliders, menu trees, etc.)</li>
-    		</ul>	
-		<h2>What Does ARIA NOT Solve?</h2>
-		<p>WAI-ARIA is not intended to influence browser behavior. Unlike a real button element. The browser itself does not know that a div with role of “button” is a button, only its accessibility API portion does.</p> 
+  <form name="signForm" id="signUpForm" novalidate>
+    <h1>About ARIA</h1>
+    <p>ARIA (Assistive Rich Internet Applications), is a spec from the W3C created to improve accessibility of applications by providing more context and more interactivity to HTML attributes. It was developed through the HTML Accessibility Taskforce, and is published by the HTML Working Group with approval by the Protocols and Formats Working Group.</p> 
+    <h2>ARIA's Markups:</h2>
+    <ul>
+      <li>Roles: Defines the element</li>
+      <li>Properties: Adds properties to the elements</li>
+      <li>States: Defines the current states of the element</li>
+    </ul>
+    <h2>What Does ARIA Solve?</h2>
+    <ul>
+      <li>In general, accessibility issues with rich internet applications can be characterized as:Inability to provide the semantic structure of page areas and functionality (e.g., navigation, main content, search, etc.) </li>
+      <li>Inaccessibility of content that is dynamic and may change within the page (e.g., AJAX content updates)</li>
+      <li>Inability to change keyboard focus to page elements (e.g., setting focus to an error message within the page)</li>
+      <li>Difficulty with keyboard and screen reader accessibility with complex widgets and navigation elements (e.g., sliders, menu trees, etc.)</li>
+    </ul>	
+    <h2>What Does ARIA NOT Solve?</h2>
+    <p>WAI-ARIA is not intended to influence browser behavior. Unlike a real button element. The browser itself does not know that a div with role of “button” is a button, only its accessibility API portion does.</p> 
     <p>NOTE: As a consequence, this means that you absolutely have to implement keyboard navigation, focusability and other behavioural patterns known from desktop applications yourself.</p>
-
-    <br><br>
-      <!-- First Name -->
-      <!--The firstName field has no validations. It may remain blank (e.g., people with only one name, like Madonna or Prince)-->
-      <div class="name">
+    <!-- First Name -->
+    <!--The firstName field has no validations. It may remain blank (e.g., people with only one name, like Madonna or Prince)-->
+    <div class="name">
+      <br>
         <label>First Name</label>
         <input type="text" name="firstName" placeholder="Your First Name" class="form-control"></input>
-        <br>
+      </br>
+    </div>
+
+    <!-- Last Name -->
+    <!--The lastName field is required. If it is still empty after the user touches it, your code should display an appropriate error message.-->
+    <div class="form-group" ng-class="{ 'has-error': signForm.lastName.$touched && signForm.lastName.$invalid}">
+      <label>Last Name</label>
+      <input type="lastName" name="lastName" placeholder="Last Name" class="form-control" ng-model="main.lastName" >
+      <div class="help-block" ng-messages="signForm.lastName.$error" ng-if="signForm.lastName.$touched">
       </div>
-
-      <!-- Last Name -->
-      <!--The lastName field is required. If it is still empty after the user touches it, your code should display an appropriate error message.-->
-      <div class="form-group" ng-class="{ 'has-error': signForm.lastName.$touched && signForm.lastName.$invalid}">
-        <label>Last Name</label>
-        <input type="lastName" name="lastName" placeholder="Last Name" class="form-control" ng-model="main.lastName" >
-        <div class="help-block" ng-messages="signForm.lastName.$error" ng-if="signForm.lastName.$touched">
-        </div>
+    </div>
+    <div class="form-group">
+      <h3>What is your sex?</h3>
+      <div class="radio">
+        <label><input type="radio" name="sex" value="male" ng-model="main.sex">Male</label>
       </div>
-      <div class="form-group">
-        <h3>What is your sex?</h3>
-          <div class="radio">
-            <label><input type="radio" name="sex" value="male" ng-model="main.sex">Male</label>
-          </div>
-          <div class="radio">
-            <label><input type="radio" name="sex" value="female" ng-model="main.sex">Female</label>
-          </div>
-        </div>  
-        <button type="submit" class="btn btn-success" ng-click="submitForm(signForm.$valid)" ng-disabled="signForm.$invalid" id="submitButton" value="Submit">Sign Me Up!</button>
+      <div class="radio">
+        <label><input type="radio" name="sex" value="female" ng-model="main.sex">Female</label>
+      </div>
+    </div>  
+    <button type="submit" class="btn btn-success" ng-click="submitForm(signForm.$valid)" ng-disabled="signForm.$invalid" id="submitButton" value="Submit">Sign Me Up!</button>  
 
-  </div>  
+  </form>  
 
-<footer>
-      <br>
+  <footer role="contentinfo" >
+    <br>
       <h3>Helpful ARIA Links</h3>  
       <a href = "http://www.w3.org/TR/2014/REC-wai-aria-20140320/"> W3 Aria Resources</a>
-      <br>
+    </br>
       <a href = "http://a11yproject.com/posts/getting-started-aria/"> More About Aria</a>
-      <br>
+    <br>
       <a href = "https://github.com/ezberner/aria-lesson"> Link to Starter Code Repo</a>
-      <br>
+    </br>
       <a href = "https://www.apple.com/voiceover/info/guide/_1124.html"> VoiceOver Utility Basics</a>
-</footer>
-
+    <br>
+      <a href = "https://www.youtube.com/watch?v=zy88vFPEnNE">Link to Tutorial</a>
+    </br>
+  </footer>
+</body>
 </html>

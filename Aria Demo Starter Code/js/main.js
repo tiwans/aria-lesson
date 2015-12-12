@@ -2,7 +2,7 @@
 
 var aria = angular.module('AriaApp', ['ngMessages']);
 
-aria.controller('AriaCtrl', ['$scope' function($scope) {
+aria.controller('AriaCtrl', ['$scope', function($scope) {
    // function to submit the form after all validation has occurred            
   $scope.submitForm = function(isValid) {
 
